@@ -1,0 +1,15 @@
+// vite.config.ts
+import { defineConfig } from "file:///C:/Users/Iskander/Desktop/testwork/my-vue-app/node_modules/vite/dist/node/index.js";
+import vue from "file:///C:/Users/Iskander/Desktop/testwork/my-vue-app/node_modules/@vitejs/plugin-vue/dist/index.mjs";
+import tsconfigPaths from "file:///C:/Users/Iskander/Desktop/testwork/my-vue-app/node_modules/vite-tsconfig-paths/dist/index.mjs";
+import svgLoader from "file:///C:/Users/Iskander/Desktop/testwork/my-vue-app/node_modules/vite-svg-loader/index.js";
+var vite_config_default = defineConfig({
+  plugins: [vue(), tsconfigPaths(), svgLoader()],
+  server: {
+    host: true
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCJDOlxcXFxVc2Vyc1xcXFxJc2thbmRlclxcXFxEZXNrdG9wXFxcXHRlc3R3b3JrXFxcXG15LXZ1ZS1hcHBcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfZmlsZW5hbWUgPSBcIkM6XFxcXFVzZXJzXFxcXElza2FuZGVyXFxcXERlc2t0b3BcXFxcdGVzdHdvcmtcXFxcbXktdnVlLWFwcFxcXFx2aXRlLmNvbmZpZy50c1wiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9pbXBvcnRfbWV0YV91cmwgPSBcImZpbGU6Ly8vQzovVXNlcnMvSXNrYW5kZXIvRGVza3RvcC90ZXN0d29yay9teS12dWUtYXBwL3ZpdGUuY29uZmlnLnRzXCI7aW1wb3J0IHsgZGVmaW5lQ29uZmlnIH0gZnJvbSAndml0ZSdcbmltcG9ydCB2dWUgZnJvbSAnQHZpdGVqcy9wbHVnaW4tdnVlJ1xuaW1wb3J0IHRzY29uZmlnUGF0aHMgZnJvbSAndml0ZS10c2NvbmZpZy1wYXRocydcbmltcG9ydCBzdmdMb2FkZXIgZnJvbSAndml0ZS1zdmctbG9hZGVyJ1xuXG5cbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIHBsdWdpbnM6IFt2dWUoKSwgdHNjb25maWdQYXRocygpLCBzdmdMb2FkZXIoKV0sXG4gIHNlcnZlcjoge1xuICAgIGhvc3Q6IHRydWVcbiAgfVxufSlcbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBcVUsU0FBUyxvQkFBb0I7QUFDbFcsT0FBTyxTQUFTO0FBQ2hCLE9BQU8sbUJBQW1CO0FBQzFCLE9BQU8sZUFBZTtBQUd0QixJQUFPLHNCQUFRLGFBQWE7QUFBQSxFQUMxQixTQUFTLENBQUMsSUFBSSxHQUFHLGNBQWMsR0FBRyxVQUFVLENBQUM7QUFBQSxFQUM3QyxRQUFRO0FBQUEsSUFDTixNQUFNO0FBQUEsRUFDUjtBQUNGLENBQUM7IiwKICAibmFtZXMiOiBbXQp9Cg==
