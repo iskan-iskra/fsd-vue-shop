@@ -203,7 +203,7 @@ type TproductChangeAmountStatus = "success" | "not_found" | "amount_problem"
 const __productCheckForChangeAmount = (id: number, amount: number): TproductChangeAmountStatus => {
     const resIndex = __getIndex(id, fakeProductList.value)
     if (resIndex) {
-        if (fakeProductList.value[resIndex].warehouseAmount > amount) {
+        if (fakeProductList.value[resIndex].warehouseAmount >= amount) {
             return "success"
         } else {
             return "amount_problem"
@@ -216,7 +216,7 @@ const __productCheckForChangeAmount = (id: number, amount: number): TproductChan
 const __productChangeAmount = (id: number, amount: number) => {
     const resIndex = __getIndex(id, fakeProductList.value)
     if (resIndex) {
-        if (fakeProductList.value[resIndex].warehouseAmount > amount) {
+        if (fakeProductList.value[resIndex].warehouseAmount >= amount) {
             fakeProductList.value[resIndex].warehouseAmount -= amount
             fakeProductList.value[resIndex].orderAmount += amount
         }

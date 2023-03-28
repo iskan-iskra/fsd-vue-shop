@@ -37,7 +37,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <pre>{{ (id, isFavorite) }}</pre>
   <AppButton
     icon="heart"
     :type="isFavorite ? 'error' : 'default'"

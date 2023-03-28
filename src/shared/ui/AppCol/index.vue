@@ -9,12 +9,6 @@ const props = defineProps({
   sm: [String, Number],
 
   xs: [String, Number],
-
-  weight: [String, Number],
-
-  margin: [String, Number],
-
-  align: String,
 });
 const spanClasses = computed(() => {
   return [
@@ -22,9 +16,6 @@ const spanClasses = computed(() => {
     props.md ? `md-span-${props.md}` : null,
     props.sm ? `sm-span-${props.sm}` : null,
     props.xs ? `xs-span-${props.xs}` : null,
-    props.weight ? `weight-${props.weight}` : null,
-    props.margin ? `margin-${props.margin}` : null,
-    props.align ? `${props.align}` : null,
   ];
 });
 </script>

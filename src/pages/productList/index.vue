@@ -20,6 +20,7 @@ import {
 
 import { useScrolled } from "shared/lib";
 import { AppButtonFavorite } from "features/favorite";
+import { AppCartActionsButtons } from "features/cart";
 
 const { setLoading } = useGlobalLoader();
 const { isScrollBottom } = useScrolled();
@@ -169,6 +170,18 @@ onMounted(async () => {
           <AppRow v-if="item.id || item.id === 0">
             <AppCol :lg="3">
               <AppButtonFavorite :id="item.id" />
+            </AppCol>
+            <AppCol
+              :lg="9"
+              v-if="
+                item.warehouseAmount ||
+                item.warehouseAmount === 0
+              "
+            >
+              <AppCartActionsButtons
+                :id="item.id"
+                :warehouseAmount="item.warehouseAmount"
+              />
             </AppCol>
           </AppRow>
         </template>

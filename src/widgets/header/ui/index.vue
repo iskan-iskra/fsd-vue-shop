@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useCart } from "features/cart";
 import { RouterNames } from "pages";
 import { useNavigation } from "shared/lib";
 import {
@@ -11,6 +12,8 @@ import {
 
 const { navigateByRouteName, getNavList, checkNavItem } =
   useNavigation();
+
+const { cartStoreProductsAmount } = useCart(undefined);
 </script>
 <template>
   <AppContainer class="header">
@@ -41,7 +44,13 @@ const { navigateByRouteName, getNavList, checkNavItem } =
           "
           size="medium"
           @click="navigateByRouteName(navItem.routeName)"
-          >{{ navItem.name }}
+          >{{
+            navItem.name +
+            (navItem.routeName === RouterNames.CART &&
+            cartStoreProductsAmount > 0
+              ? `(${cartStoreProductsAmount})`
+              : "")
+          }}
         </AppButton>
       </AppCol>
     </AppRow>
