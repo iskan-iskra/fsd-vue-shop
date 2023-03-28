@@ -7,7 +7,6 @@ const isLoading = ref<Boolean>(false)
 export const useGlobalLoader = () => {
     const setLoading = (flag: boolean) => {
         isLoading.value = flag
-        console.log(isLoading.value);
 
     }
 

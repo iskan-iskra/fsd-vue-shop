@@ -22,285 +22,67 @@ export const __orderList: TOrder[] = [
     },
 ]
 
+const __generateProductCategory = (maxAmountOfProduct: number, currentProductNumber: number) => {
+    let generatedCategoryId = 1;
+    if (currentProductNumber > Math.round(maxAmountOfProduct * 4 / 5) - 1) generatedCategoryId = 5
+    else if (currentProductNumber > Math.round(maxAmountOfProduct * 3 / 5) - 1) generatedCategoryId = 4
+    else if (currentProductNumber > Math.round(maxAmountOfProduct * 2 / 5) - 1) generatedCategoryId = 3
+    else if (currentProductNumber > Math.round(maxAmountOfProduct / 5) - 1) generatedCategoryId = 2
+    return generatedCategoryId
+}
 
+
+const __generateProductPrice = (currentCategoryId: number) => {
+    return (Math.floor(Math.random() * 9) + 1) * 1000 * (currentCategoryId > 2 ? 100 : 1);
+}
+
+const __generateFirstPartOfName = (currentCategory: number): string => {
+    switch (currentCategory) {
+        case 1:
+            return "мышка"
+        case 2:
+            return "клавиатура"
+        case 3:
+            return "монитор"
+        case 4:
+            return "видеокарта"
+        case 5:
+            return "процессор"
+        default:
+            return "товар"
+    }
+}
+
+const __generateProductName = (currentCategory: number, currentProductNumber: number): string => {
+    return __generateFirstPartOfName(currentCategory) + " " + (currentProductNumber + 1).toString()
+}
+
+const __generateProductAmount = () => {
+    return (Math.floor(Math.random() * 3) + 1) * 10 + (Math.floor(Math.random() * 9))
+}
 
 const __genereProductList = (): TProduct[] => {
+    const maxAmountOfProduct: number = 49
     const res: TProduct[] = []
-    for (let i = 0; i < 20; i++) {
-        let reqcategoryId = 1;
-        if (i > 3) reqcategoryId = 2
-        if (i > 7) reqcategoryId = 3
-        if (i > 11) reqcategoryId = 4
-        if (i > 15) reqcategoryId = 5
+    for (let i = 0; i < maxAmountOfProduct; i++) {
+        const generatedCategoryId: number = __generateProductCategory(maxAmountOfProduct, i)
+        const generatedPrice = __generateProductPrice(generatedCategoryId)
+        const genaratedName = __generateProductName(generatedCategoryId, i)
+        const gereratedAmount = __generateProductAmount()
         res.push({
             id: i,
-            categoryId: reqcategoryId,
-            cost: 10000,
-            name: "test" + i,
+            categoryId: generatedCategoryId,
+            cost: generatedPrice,
+            name: genaratedName,
             photo: "",
             orderAmount: 0,
-            warehouseAmount: 10,
+            warehouseAmount: gereratedAmount,
         })
     }
 
     return res
 }
 export const __productList = __genereProductList()
-
-// export const __productList: TProduct[] = [
-//     {
-//         id: 1,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 2,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 3,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 4,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 5,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 6,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 1,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 7,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 8,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 9,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 10,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 11,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 12,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 13,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 14,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 15,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 16,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 17,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 18,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 19,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 20,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 21,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 22,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 23,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 24,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-
-//     },
-//     {
-//         id: 25,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-//     {
-//         id: 26,
-//         categoryId: 1,
-//         cost: 100000,
-//         name: "",
-//         orderAmount: 0,
-//         warehouseAmount: 10,
-//         photo: ""
-//     },
-// ]
 
 export const __categoryList: TCategory[] = [
     {
@@ -310,8 +92,8 @@ export const __categoryList: TCategory[] = [
     },
     {
         id: 2,
-        name: "видеокарты",
-        key: "GPU",
+        name: "клавиатуры",
+        key: "keyboard",
     },
     {
         id: 3,
@@ -320,13 +102,14 @@ export const __categoryList: TCategory[] = [
     },
     {
         id: 4,
-        name: "процессоры",
-        key: "CPU",
+        name: "видеокарты",
+        key: "GPU",
     },
     {
         id: 5,
-        name: "клавиатуры",
-        key: "keyboard",
+        name: "процессоры",
+        key: "CPU",
     },
+
 
 ]

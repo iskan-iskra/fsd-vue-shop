@@ -1,5 +1,5 @@
 import { TProduct, TCategory, TProductSort } from "shared/api/"
-import { fakeGetProductList, fakeGetProductById, fakeGetCategoryList } from "../fakeApi"
+import { fakeGetProductList, fakeGetProductById, fakeGetCategoryList, fakeGetProductListByIds } from "../fakeApi"
 
 
 
@@ -16,6 +16,22 @@ const getProductById = async (id: TProduct['id']): Promise<TProduct | void> => {
     try {
         const res = await fakeGetProductById(id)
         if (res.status === "success") {
+            return res.data
+        }
+        if (res.status === "error") {
+            new Error('Server error')
+        }
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+}
+
+const getProductListByIds = async (idList: TProduct['id'][]): Promise<TProduct[] | void> => {
+    try {
+        const res = await fakeGetProductListByIds(idList)
+        if (res.status === "success") {
+            if (res.message) console.log(res.message);
             return res.data
         }
         if (res.status === "error") {
@@ -110,5 +126,6 @@ export {
     getProductsList,
     getProductsByCategory,
     getAllCaregoryList,
+    getProductListByIds,
     test,
 }

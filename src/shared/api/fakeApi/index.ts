@@ -163,6 +163,41 @@ const fakeGetProductById = async (id: number): Promise<TRes> => {
     }, fakeApiConfig.time));
 }
 
+
+const fakeGetProductListByIds = async (idList: number[]): Promise<TRes> => {
+    return new Promise<TRes>((resolve, regect) => setTimeout(() => {
+        if (!fakeApiConfig.workStatus) {
+            regect({
+                data: undefined,
+                status: "error"
+            })
+        }
+        const reqProductList: TProduct[] = []
+        const notFoundIdList: number[] = []
+        idList.forEach((id) => {
+            const reqProduct = __searchById(id, fakeProductList.value)
+            if (reqProduct) {
+                reqProductList.push(reqProduct)
+            } else {
+                notFoundIdList.push(id)
+            }
+        })
+        const res: TProduct[] = reqProductList
+        if (res.length > 0) {
+            resolve({
+                data: res,
+                status: 'success',
+                message: notFoundIdList.length > 0 ? `Product with id: ${notFoundIdList.join(', ')} not found` : undefined
+            })
+        } else {
+            regect({
+                data: undefined,
+                status: 'error'
+            })
+        }
+    }, fakeApiConfig.time));
+}
+
 type TproductChangeAmountStatus = "success" | "not_found" | "amount_problem"
 
 const __productCheckForChangeAmount = (id: number, amount: number): TproductChangeAmountStatus => {
@@ -315,6 +350,7 @@ export {
     fakeGetOrders,
     fakeCreateOrder,
     fakeGetCategoryList,
+    fakeGetProductListByIds,
 }
 
 

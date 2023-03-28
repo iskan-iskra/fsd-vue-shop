@@ -19,6 +19,7 @@ import {
 } from "features/productSort";
 
 import { useScrolled } from "shared/lib";
+import { AppButtonFavorite } from "features/favorite";
 
 const { setLoading } = useGlobalLoader();
 const { isScrollBottom } = useScrolled();
@@ -164,7 +165,13 @@ onMounted(async () => {
       :key="item.id"
     >
       <AppProductCard :data="item">
-        <template #actions></template>
+        <template #actions>
+          <AppRow v-if="item.id || item.id === 0">
+            <AppCol :lg="3">
+              <AppButtonFavorite :id="item.id" />
+            </AppCol>
+          </AppRow>
+        </template>
       </AppProductCard>
     </AppCol>
   </AppRow>
