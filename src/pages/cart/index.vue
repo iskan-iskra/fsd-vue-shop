@@ -162,6 +162,7 @@ onMounted(async () => {
       bottom: 0;
       left: 0;
       right: 0;
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
     }
   }
@@ -209,7 +210,7 @@ onMounted(async () => {
   &__actions {
     justify-self: flex-end;
     position: sticky;
-    bottom: 0;
+    bottom: -32px;
     right: 0;
     margin-top: auto;
     &::after {
@@ -221,6 +222,7 @@ onMounted(async () => {
       left: 0;
       right: 0;
       backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.7);
     }
   }
 }

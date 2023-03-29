@@ -112,6 +112,7 @@ onMounted(async () => {
       left: 0;
       right: 0;
       backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.7);
     }
   }
 
