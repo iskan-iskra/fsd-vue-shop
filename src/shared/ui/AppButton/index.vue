@@ -260,6 +260,7 @@ const btnClick = () => {
       @include for-icn(var(--color-default));
     }
     &.disabled {
+      pointer-events: none;
       background-color: var(--color-disabled-background);
       border-color: var(--color-disabled-background);
       &:active {

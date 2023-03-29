@@ -47,6 +47,7 @@ const xsSizeInPx = computed(
 <style lang="scss">
 @import "../mixin.scss";
 .icon {
+  user-select: none;
   width: v-bind(lgSizeInPx);
   height: v-bind(lgSizeInPx);
   cursor: pointer;

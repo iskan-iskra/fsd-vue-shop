@@ -16,7 +16,10 @@ const { navigateByRouteName, getNavList, checkNavItem } =
 const { cartStore } = useCart(undefined);
 
 const cartSize = computed(() => {
-  return `"${cartStore.value.length}"`;
+  return `"${cartStore.value.reduce(
+    (acc, cur) => acc + cur.amount,
+    0
+  )}"`;
 });
 
 const isCartSizeVisible = computed(() => {

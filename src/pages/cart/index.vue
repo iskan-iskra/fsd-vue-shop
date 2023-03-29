@@ -95,6 +95,12 @@ onMounted(async () => {
         :amount-at-cart="findByIdInCartList(cartProduct.id)"
       ></AppCartProduct>
     </template>
+    <div
+      v-else
+      class="cart__empty"
+    >
+      <div>Нет товаров на оформление заказа</div>
+    </div>
 
     <AppRow
       justify="end"
@@ -167,6 +173,22 @@ onMounted(async () => {
     @include for-phone {
       padding-top: 16px;
       min-height: 100%;
+    }
+  }
+
+  &__empty {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+      padding: 16px;
+      color: var(--color-default);
+      border: 1px solid var(--color-info);
     }
   }
 
