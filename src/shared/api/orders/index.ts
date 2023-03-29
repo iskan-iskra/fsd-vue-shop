@@ -21,7 +21,6 @@ const getOrders = async (): Promise<TOrder[] | void> => {
 const createOrder = async (params: TCreateOrder): Promise<TOrder[] | void> => {
     try {
         const res = await fakeCreateOrder(params);
-        console.log(res);
 
         if (res.status === "success") {
             return res.data

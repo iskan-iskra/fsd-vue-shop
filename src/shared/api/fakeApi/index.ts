@@ -13,8 +13,6 @@ type TRes = {
     message?: string,
 }
 
-
-
 console.log("init fake API server");
 
 
@@ -43,7 +41,7 @@ if (__categoryList.length > 0) {
 
 const __getIndex = (id: number, array: Array<any>) => {
 
-    const res = array.findIndex((el) => el?.id === id)
+    const res = array.findIndex((el) => el.id === id)
     if (res !== -1) {
         return res
     }
@@ -202,7 +200,8 @@ type TproductChangeAmountStatus = "success" | "not_found" | "amount_problem"
 
 const __productCheckForChangeAmount = (id: number, amount: number): TproductChangeAmountStatus => {
     const resIndex = __getIndex(id, fakeProductList.value)
-    if (resIndex) {
+
+    if (resIndex || resIndex === 0) {
         if (fakeProductList.value[resIndex].warehouseAmount >= amount) {
             return "success"
         } else {
@@ -215,7 +214,7 @@ const __productCheckForChangeAmount = (id: number, amount: number): TproductChan
 
 const __productChangeAmount = (id: number, amount: number) => {
     const resIndex = __getIndex(id, fakeProductList.value)
-    if (resIndex) {
+    if (resIndex || resIndex === 0) {
         if (fakeProductList.value[resIndex].warehouseAmount >= amount) {
             fakeProductList.value[resIndex].warehouseAmount -= amount
             fakeProductList.value[resIndex].orderAmount += amount
@@ -282,7 +281,7 @@ const fakeCreateOrder = async (params: TCreateOrder): Promise<TRes> => {
                     regect({
                         data: undefined,
                         status: "error",
-                        message: "Product not found pn warehouse"
+                        message: "Product not found on warehouse"
                     })
                     break;
             }

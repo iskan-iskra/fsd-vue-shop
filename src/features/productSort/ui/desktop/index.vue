@@ -5,7 +5,7 @@ import { ref, watch, PropType } from "vue";
 
 const props = defineProps({
   currentSort: {
-    type: Object as PropType<TProductSort>,
+    type: String as PropType<TProductSort>,
   },
 });
 

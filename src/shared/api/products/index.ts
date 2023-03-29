@@ -72,11 +72,6 @@ const getProductsList = async (params: TListParams = {
     }
 }
 
-const test = async (id: number): Promise<void> => {
-    console.log("test API");
-}
-
-
 
 
 // dublicate API for option, when productslist by category
@@ -127,5 +122,4 @@ export {
     getProductsByCategory,
     getAllCaregoryList,
     getProductListByIds,
-    test,
 }

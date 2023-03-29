@@ -6,7 +6,7 @@ import AppProductSortDesktop from "../desktop";
 import { AppButton, AppCol, AppRow } from "shared/ui";
 const props = defineProps({
   currentSort: {
-    type: Object as PropType<TProductSort>,
+    type: String as PropType<TProductSort>,
   },
 });
 const emits = defineEmits(["choose-sort"]);

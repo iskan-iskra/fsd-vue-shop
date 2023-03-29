@@ -2,9 +2,13 @@
 import { TProduct, orderService } from "shared/api";
 import { AppButton, AppCol, AppRow } from "shared/ui";
 import { TCreateOrder } from "shared/api";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useGlobalLoader } from "widgets/loader";
-import { useCart, TCartStore } from "features/cart";
+import {
+  useCart,
+  TCartStore,
+  AppCartProduct,
+} from "features/cart";
 import { productService } from "shared/api";
 
 const { cartStore, clearCartStore } = useCart(undefined);
@@ -50,6 +54,27 @@ const getProductsList = async (
   }
 };
 
+const findByIdInCartList = (id: number) => {
+  return (
+    cartStore.value.find((el) => el.id === id)?.amount || 0
+  );
+};
+
+const cartTotalCost = computed<number>(() => {
+  return data.value.reduce(
+    (acc, cur) =>
+      acc + cur.cost * findByIdInCartList(cur.id),
+    0
+  );
+});
+
+const dynamicData = computed(() => {
+  const reqIdList = cartStore.value.map((el) => el.id);
+  return data.value.filter((el) =>
+    reqIdList.includes(el.id)
+  );
+});
+
 onMounted(async () => {
   const reqIdList: number[] = cartStore.value.map(
     (el) => el.id
@@ -61,19 +86,14 @@ onMounted(async () => {
 <template>
   <div class="cart__title">Корзина:</div>
   <div class="cart__wrapper">
-    <template
-      v-for="cartProduct in data"
-      :key="cartProduct.id"
-    >
-      <AppRow>
-        <AppCol :lg="4">{{ cartProduct.name }}</AppCol>
-        <AppCol :lg="4">{{ cartProduct.cost }}</AppCol>
-        <AppCol :lg="4">{{
-          cartProduct.categoryId
-        }}</AppCol>
-      </AppRow>
-
-      <hr />
+    <template v-if="dynamicData.length > 0">
+      <AppCartProduct
+        class="cart__product"
+        v-for="cartProduct in dynamicData"
+        :key="cartProduct.id"
+        :order-product="cartProduct"
+        :amount-at-cart="findByIdInCartList(cartProduct.id)"
+      ></AppCartProduct>
     </template>
 
     <AppRow
@@ -82,11 +102,20 @@ onMounted(async () => {
       :lg-gutter="[8, 8]"
       class="cart__actions"
     >
+      <AppCol
+        :lg="12"
+        v-if="cartTotalCost"
+        class="cart__total-cost"
+      >
+        Всего к оплате:
+        {{ cartTotalCost }}
+      </AppCol>
       <AppCol>
         <AppButton
           type="primary"
           @click="createOrder"
           outlined
+          :disabled="!cartTotalCost"
           >Сделать заказ</AppButton
         >
       </AppCol>
@@ -94,6 +123,7 @@ onMounted(async () => {
         <AppButton
           type="error"
           @click="clearCartStore"
+          :disabled="!cartTotalCost"
           outlined
           >Очистить корзину</AppButton
         >
@@ -103,8 +133,8 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
+@import "../../shared/ui/mixin.scss";
 .cart {
-  @import "../../shared/ui/mixin.scss";
   &__title {
     display: block;
     font-size: 2rem;
@@ -140,12 +170,36 @@ onMounted(async () => {
     }
   }
 
+  &__product {
+    & + & {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-default);
+    }
+  }
+
+  &__total-cost {
+    text-align: end;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
   &__actions {
     justify-self: flex-end;
     position: sticky;
     bottom: 0;
     right: 0;
     margin-top: auto;
+    &::after {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      backdrop-filter: blur(10px);
+    }
   }
 }
 </style>

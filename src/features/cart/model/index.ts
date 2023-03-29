@@ -17,7 +17,6 @@ export const useCart = (id: TProduct['id'] | undefined) => {
                 amount: 1
             })
         }
-
     }
 
     const __removeFromCart = (index: number) => {
@@ -77,6 +76,10 @@ export const useCart = (id: TProduct['id'] | undefined) => {
         cartStore.value = []
     }
 
+    const repeatCartByOrderData = (orderData: TOrder['productList']) => {
+        cartStore.value = orderData
+    }
+
     const cartStoreProductsAmount = computed(() => {
         return cartStore.value.reduce((acc, cur) => acc + cur.amount, 0)
     })
@@ -89,6 +92,8 @@ export const useCart = (id: TProduct['id'] | undefined) => {
         removeFromCart,
         checkCartForProduct,
         hardRemoveFromCart,
-        getProductAmountAtCart
+        getProductAmountAtCart,
+        repeatCartByOrderData
+
     }
 }
