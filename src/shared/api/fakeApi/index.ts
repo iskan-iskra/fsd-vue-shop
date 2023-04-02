@@ -342,6 +342,33 @@ const fakeGetCategoryList = async (): Promise<TRes> => {
 }
 
 
+// const fakeProductSearch = async (): Promise<TRes> => {
+//     return new Promise<TRes>((resolve, regect) => setTimeout(() => {
+//         if (!fakeApiConfig.workStatus) {
+//             regect({
+//                 data: undefined,
+//                 status: "error"
+//             })
+//         }
+
+//         const res = 
+
+//         if (res.length > 0) {
+//             resolve({
+//                 data: res,
+//                 status: 'success',
+//             })
+//         } else {
+//             regect({
+//                 data: undefined,
+//                 status: 'error'
+//             })
+//         }
+
+//     }, fakeApiConfig.time));
+// }
+
+
 
 export {
     fakeGetProductList,
