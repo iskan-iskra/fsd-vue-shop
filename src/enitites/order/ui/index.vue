@@ -5,7 +5,7 @@ import {
   TProduct,
   productService,
 } from "shared/api";
-import { useCategory } from "shared/lib";
+import { useCategory } from "enitites/category";
 import { AppButton, AppCol, AppRow } from "shared/ui";
 import { PropType, computed, ref } from "vue";
 import { useGlobalLoader } from "widgets/loader";

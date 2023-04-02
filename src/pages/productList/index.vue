@@ -12,7 +12,7 @@ import { AppCol, AppRow } from "shared/ui";
 import {
   AppProductCategoryDesktop,
   AppProductCategoryMobile,
-} from "features/productCategory";
+} from "enitites/category";
 import {
   AppProductSortDesktop,
   AppProductSortMobile,

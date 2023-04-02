@@ -2,7 +2,7 @@
 import { AppCol, AppRow } from "shared/ui";
 import { TProduct } from "shared/api";
 import { PropType } from "vue";
-import { useCategory } from "shared/lib";
+import { useCategory } from "enitites/category";
 
 const { getCategoryById } = useCategory();
 

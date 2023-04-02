@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TCategory } from "shared/api";
-import { useCategory } from "shared/lib";
+import { useCategory } from "enitites/category";
 import { AppButton, AppCol, AppRow } from "shared/ui";
 import { PropType, ref, watch } from "vue";
 

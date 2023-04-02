@@ -4,7 +4,7 @@ import {
   AppCartRemoveButton,
 } from "features/cart";
 import { TProduct } from "shared/api";
-import { useCategory } from "shared/lib";
+import { useCategory } from "enitites/category";
 import { AppCol, AppRow } from "shared/ui";
 import { PropType } from "vue";
 
