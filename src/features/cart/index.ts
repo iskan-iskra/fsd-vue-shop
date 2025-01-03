@@ -1,6 +1,2 @@
-export * from './model'
-export * from './ui'
-// export { default as AppCartActionsButtons } from './ui'
-// export { default as AppCartRemoveButton } from './ui'
-// export { default as AppCartIncreaseButton } from './ui'
-// export { default as AppCartDecreaseButton } from './ui'
+export * from "./model";
+export * from "./ui";
